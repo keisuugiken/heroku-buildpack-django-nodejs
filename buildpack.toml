@@ -1,5 +1,5 @@
 [buildpack]
-name = "Node.js"
+name = "django-node-build"
 
   [publish.Ignore]
   files = [

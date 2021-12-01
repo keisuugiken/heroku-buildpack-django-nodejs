@@ -17,12 +17,12 @@ error() {
 	exit 1
 }
 
-if [ -f "$1/package.json" ]; then
+if [ -f "$1/static/js/package.json" ]; then
   echo 'Node.js'
   exit 0
 fi
 
-if [[ -f "$1/.slugignore" ]] && grep -Fxq "package.json" "$1/.slugignore"; then
+if [[ -f "$1/static/js/.slugignore" ]] && grep -Fxq "package.json" "$1/.slugignore"; then
   error << EOF
 'package.json' listed in '.slugignore' file
 
@@ -33,7 +33,7 @@ the '.slugignore' file is removing it before the build begins.
 For more information, refer to the following documentation:
 https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-slugignore
 EOF
-elif [[ -f "$1/.gitignore" ]] && grep -Fxq "package.json" "$1/.gitignore"; then
+elif [[ -f "$1/static/js/.gitignore" ]] && grep -Fxq "package.json" "$1/.gitignore"; then
   error << EOF
 'package.json' listed in '.gitignore' file
 
@@ -47,7 +47,7 @@ https://devcenter.heroku.com/articles/gitignore
 EOF
 else
   error <<- EOF
-Application not supported by 'heroku/nodejs' buildpack
+Application not supported by 'keisuugiken/django-node-build' buildpack
 
 The 'heroku/nodejs' buildpack is set on this application, but was
 unable to detect a Node.js codebase.
